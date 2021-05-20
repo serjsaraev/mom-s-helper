@@ -1,0 +1,6 @@
+opencv-contrib-python-headless
+torch
+torchvision
+numpy
+Pillow
+aiogram
