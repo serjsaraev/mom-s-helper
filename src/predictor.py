@@ -12,7 +12,7 @@ from detectron2.engine import DefaultPredictor
 from detectron2.utils.visualizer import Visualizer
 
 # Register custom COCO dataset
-register_coco_instances("clothes", {}, "./dataset/_annotations.coco.json",
+register_coco_instances("clothes", {}, "src/dataset/_annotations.coco.json",
                         "./dataset")
 clothesnet = MetadataCatalog.get("clothes")
 dataset_dicts = DatasetCatalog.get("clothes")
@@ -21,9 +21,9 @@ dataset_dicts = DatasetCatalog.get("clothes")
 cfg = get_cfg()
 cfg.merge_from_file(model_zoo.get_config_file(
     "COCO-Detection/faster_rcnn_X_101_32x8d_FPN_3x.yaml"))
-cfg.MODEL.WEIGHTS = ("./model/model.pth")
-cfg.MODEL.ROI_HEADS.NUM_CLASSES = 32
-cfg.MODEL.DEVICE = "gpu"
+cfg.MODEL.WEIGHTS = ("src/model/model_666.pth")
+cfg.MODEL.ROI_HEADS.NUM_CLASSES = 35
+cfg.MODEL.DEVICE = "cuda"
 cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.4  # set threshold for this model
 predictor = DefaultPredictor(cfg)
 

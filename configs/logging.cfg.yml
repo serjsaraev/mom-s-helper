@@ -7,7 +7,7 @@ formatters:
 handlers:
   stream_handler:
     class: logging.StreamHandler
-    stream: ext://sys.stderr
+    stream: ext://sys.stdout
     level: INFO
     formatter: simple
 loggers:
@@ -16,5 +16,5 @@ loggers:
     handlers: [stream_handler]
     propagate: no
 root:
-  level: ERROR
+  level: DEBUG
   handlers: [stream_handler]

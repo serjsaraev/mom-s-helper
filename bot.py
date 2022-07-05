@@ -1,10 +1,12 @@
 # coding=utf8
 
 import logging
+import logging.config
 import os
 
 import yaml
 from aiogram import Bot, Dispatcher, executor, types
+from dotenv import load_dotenv
 
 from src.predictor import predict
 from src.static_text import HELLO_TEXT, NON_TARGET_TEXT, WAITING_TEXT, \
@@ -15,7 +17,8 @@ with open("configs/logging.cfg.yml") as config_fin:
     logging.config.dictConfig(yaml.safe_load(config_fin.read()))
 
 # Loding Telegram token from env
-TOKEN = os.getenv('TOKENBOT')
+load_dotenv()
+TOKEN = os.getenv('TOKEN')
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 
@@ -71,4 +74,5 @@ async def handle_docs_photo(message):
 
 
 if __name__ == '__main__':
+    logging.info('Bot started!')
     executor.start_polling(dp, skip_updates=True)
