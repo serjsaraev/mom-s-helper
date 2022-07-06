@@ -8,7 +8,7 @@ import yaml
 from aiogram import Bot, Dispatcher, executor, types
 from dotenv import load_dotenv
 
-from src.predictor import predict
+from src.predict import FasterRCNN
 from src.static_text import HELLO_TEXT, NON_TARGET_TEXT, WAITING_TEXT, \
     NON_TARGET_CONTENT_TYPES, \
     CLASSES_DICT
@@ -16,14 +16,14 @@ from src.static_text import HELLO_TEXT, NON_TARGET_TEXT, WAITING_TEXT, \
 with open("configs/logging.cfg.yml") as config_fin:
     logging.config.dictConfig(yaml.safe_load(config_fin.read()))
 
-# Loding Telegram token from env
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 
+model = FasterRCNN("configs/detectron2_config.yml")
 
-# Base command for start bot
+
 @dp.message_handler(commands=['start'])
 async def send_welcome(message: types.Message):
     user_name = message.from_user.first_name
@@ -46,7 +46,6 @@ async def handle_docs_photo(message):
     chat_id = message.chat.id
 
     if message.media_group_id is None:
-        # Get user's variables
         user_name = message.from_user.first_name
         user_id = message.from_user.id
         message_id = message.message_id
@@ -54,13 +53,11 @@ async def handle_docs_photo(message):
         logging.info(f'{user_name, user_id} is knocking to our bot')
         await bot.send_message(chat_id, text)
 
-        # Define input photo local path
         photo_name = './input/photo_%s_%s.jpg' % (user_id, message_id)
         await message.photo[-1].download(
-            photo_name)  # extract photo for further procceses
+            photo_name)
 
-        # Photo processing
-        photo_output, text = predict(photo_name)
+        photo_output, text = model(photo_name)
         await bot.send_photo(chat_id, photo_output)
         output_text = []
         for i in text:

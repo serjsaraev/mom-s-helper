@@ -10,7 +10,7 @@ NON_TARGET_CONTENT_TYPES = [
     'channel_chat_created',
     'migrate_to_chat_id', 'migrate_from_chat_id', 'pinned_message'
 ]
-NON_LABELS_TEXT = "Кажется, на фотографии нет ярлыков. Попробуй еще раз!"
+NON_LABELS_TEXT = "Кажется, на фотографии нет ярлыков. Попробуйте отправить новое фото!"
 
 CLASSES = ['box', 'cleaning_gently', 'cleaning_with_H_T',
            'cleaning_with_M_H_C', 'color_clothes',
