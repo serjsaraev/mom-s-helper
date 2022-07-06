@@ -10,8 +10,7 @@ from dotenv import load_dotenv
 
 from src.predict import FasterRCNN
 from src.static_text import HELLO_TEXT, NON_TARGET_TEXT, WAITING_TEXT, \
-    NON_TARGET_CONTENT_TYPES, \
-    CLASSES_DICT
+    NON_TARGET_CONTENT_TYPES, CLASSES_DICT
 
 with open("configs/logging.cfg.yml") as config_fin:
     logging.config.dictConfig(yaml.safe_load(config_fin.read()))
@@ -54,7 +53,7 @@ async def handle_docs_photo(message):
 
         photo_name = './input/photo_%s_%s.jpg' % (user_id, message_id)
         await message.photo[-1].download(
-            photo_name)
+            destination_file=photo_name)
 
         photo_output, text = model(photo_name)
         await bot.send_photo(chat_id, photo_output)
@@ -63,6 +62,7 @@ async def handle_docs_photo(message):
             output_text.append(CLASSES_DICT[i])
         output_text = '\n\n'.join(output_text)
         await bot.send_message(chat_id, output_text)
+        os.remove(photo_name)
 
     else:
         text = NOT_TARGET_TEXT % user_name
