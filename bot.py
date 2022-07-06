@@ -20,7 +20,6 @@ load_dotenv()
 TOKEN = os.getenv('TOKEN')
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
-
 model = FasterRCNN("configs/detectron2_config.yml")
 
 
