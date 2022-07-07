@@ -63,7 +63,6 @@ async def handle_docs_photo(message):
         output_text = '\n\n'.join(output_text)
         if not output_text:
             output_text = NON_LABELS_TEXT
-        print(output_text)
         await bot.send_message(chat_id, output_text)
         os.remove(photo_name)
 
