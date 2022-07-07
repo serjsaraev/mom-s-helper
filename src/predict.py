@@ -10,6 +10,7 @@ from detectron2.data.datasets import register_coco_instances
 from detectron2.engine import DefaultPredictor
 from detectron2.utils.visualizer import Visualizer
 
+from src.static_text import NON_LABELS_TEXT
 
 class FasterRCNN:
 
