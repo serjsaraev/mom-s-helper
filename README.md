@@ -1,6 +1,11 @@
 # Mom-s-Helper
+Ссылка на бот:
 
 https://t.me/laundrysymbolsbot
+
+Ссылка на презентацию:
+
+https://www.figma.com/proto/gEeOugZUeR0OSuutsSRROu/Moms-helper_bot?page-id=0%3A1&node-id=1%3A2&viewport=539%2C-494%2C0.27&scaling=contain
 
 ## Аннотация
 
