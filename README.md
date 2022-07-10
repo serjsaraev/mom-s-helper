@@ -1,6 +1,6 @@
 # Mom-s-Helper
 
-https://t.me/mom_helper_bot
+https://t.me/laundrysymbolsbot
 
 ## Аннотация
 
