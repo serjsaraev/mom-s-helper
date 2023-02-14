@@ -1,4 +1,4 @@
-# Mom-s-Helper
+# Sparkly
 Ссылка на бот:
 
 https://t.me/laundrysymbolsbot
